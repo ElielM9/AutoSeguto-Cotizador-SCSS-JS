@@ -66,7 +66,7 @@
       </h2>
       <div class="benefits__grid">
         <div class="benefit-card">
-          <span  class="benefit-card__number">1</span>
+          <span class="benefit-card__number">1</span>
           <h3 class="benefit-card__heading">Asistencia 24/7</h3>
           <p class="benefit-card__description">
             Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eius,
@@ -74,7 +74,7 @@
           </p>
         </div>
         <div class="benefit-card">
-          <span  class="benefit-card__number">2</span>
+          <span class="benefit-card__number">2</span>
           <h3 class="benefit-card__heading">Garantía de reparación</h3>
           <p class="benefit-card__description">
             Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eius,
@@ -82,7 +82,7 @@
           </p>
         </div>
         <div class="benefit-card">
-          <span  class="benefit-card__number">3</span>
+          <span class="benefit-card__number">3</span>
           <h3 class="benefit-card__heading">
             Recibir asesoramiento personalizado
           </h3>
@@ -92,7 +92,7 @@
           </p>
         </div>
         <div class="benefit-card">
-          <span  class="benefit-card__number">4</span>
+          <span class="benefit-card__number">4</span>
           <h3 class="benefit-card__heading">Asegurar tu vehículo</h3>
           <p class="benefit-card__description">
             Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eius,
@@ -101,45 +101,46 @@
         </div>
       </div>
     </section>
+    <section class="quotation quotation__container">
+      <h2 class="quotation__heading">Cotiza tu seguro ahora</h2>
 
-    <div class="container mx-auto">
-      <div id="contenido" class="pb-10">
-        <form class="mt-10 max-w-lg mx-auto" action="#" id="cotizar-seguro">
-          <div class="flex items-center mb-5">
-            <label class="font-bold uppercase mr-2 w-20" for="marca"
-              >Marca:</label
-            >
-            <select class="flex-1 bg-gray-100 p-3 appearance-none" id="marca">
-              <option value="">- Seleccionar -</option>
-              <option value="1">Americano</option>
-              <option value="2">Asiatico</option>
-              <option value="3">Europeo</option>
-            </select>
-          </div>
-          <div class="flex items-center mb-5">
-            <label class="font-bold uppercase mr-2 w-20" for="year">Año:</label>
-            <select
-              class="flex-1 bg-gray-100 p-3 appearance-none"
-              id="year"
-            ></select>
-          </div>
-          <fieldset>
-            <legend class="font-bold uppercase text-2xl text-center w-full">
-              Tipo Seguro
-            </legend>
-
-            <div class="flex justify-around mt-5">
-              <div>
-                <label class="font-bold uppercase mr-2">Básico</label>
-                <input type="radio" name="tipo" value="basico" checked />
-              </div>
-              <div>
-                <label class="font-bold uppercase mr-2">Completo</label>
-                <input type="radio" name="tipo" value="completo" />
-              </div>
+      <form class="quotation-form" action="#" id="quote-insurance">
+        <div class="quotation-form__field">
+          <label for="brand" class="quotation-form__label">Tipo de marca</label>
+          <select class="quotation-form__select" id="brand">
+            <option value="">Seleccionar</option>
+            <option value="1">Americano</option>
+            <option value="2">Asiatico</option>
+            <option value="3">Europeo</option>
+          </select>
+        </div>
+        <div class="quotation-form__field">
+          <label for="year" class="quotation-form__label">Año</label>
+          <select class="quotation-form__select" id="year">
+            <option value="">Seleccionar</option>
+          </select>
+        </div>
+        <fieldset class="quotation-form__field">
+          <label class="quotation-form__label"
+            >Selecciona el tipo de seguro</label
+          >
+          <div class="">
+            <div>
+              <label for="">Seguro básico</label>
+              <input type="radio" name="type" value="basic-insurance" checked />
             </div>
-          </fieldset>
-
+            <div>
+              <label for="">Seguro completo</label>
+              <input type="radio" name="type" value="accident-insurance" />
+            </div>
+          </div>
+        </fieldset>
+        <div class="quotation-form__field">
+          <button type="submit" class="quotation-form__btn">
+            Cotizar seguro
+          </button>
+        </div>
+        <div class="quotation-form__results" id="results">
           <div id="cargando" class="hidden">
             <div class="spinner">
               <div class="rect1"></div>
@@ -149,19 +150,9 @@
               <div class="rect5"></div>
             </div>
           </div>
-          <div id="resultado"></div>
-          <div class="flex justify-center py-4">
-            <button
-              type="submit"
-              class="mx-auto bg-teal-500 hover:bg-teal-700 text-white font-bold py-2 px-20 rounded"
-            >
-              Cotizar Seguro
-            </button>
-          </div>
-        </form>
-      </div>
-    </div>
-
+        </div>
+      </form>
+    </section>
     <footer class="footer">
       <p class="footer__copy">
         Todos los derechos reservados AutoSeguro &copy;

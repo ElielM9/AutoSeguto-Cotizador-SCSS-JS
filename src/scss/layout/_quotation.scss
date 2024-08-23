@@ -1,0 +1,9 @@
+@use "config/variables" as var;
+
+.quotation {
+  padding: 5rem 0;
+
+  &__heading {
+    text-align: center;
+  }
+}
