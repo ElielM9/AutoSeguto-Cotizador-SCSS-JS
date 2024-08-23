@@ -4,14 +4,23 @@
 .quotation-form {
   margin: 1rem 0;
   padding: 1rem 0;
-  @include mix.grid(1, 1rem);
+  @include mix.grid(1, 2rem);
+
+  &__fieldset {
+    border: none;
+    padding: 0;
+    @include mix.grid(2, 1rem);
+  }
 
   &__field {
     display: flex;
     flex-direction: column;
     gap: 0.5rem;
-    border: none;
-    padding: 0;
+
+    &--radio {
+      flex-direction: row;
+      align-items: center;
+    }
   }
 
   &__label {
@@ -25,7 +34,7 @@
     border-radius: 0.5rem;
     padding: 1rem;
     background-color: var.$white;
-    outline: none
+    outline: none;
   }
 
   &__btn {

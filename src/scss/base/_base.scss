@@ -25,6 +25,10 @@ img {
   height: auto;
 }
 
+picture {
+  display: flex;
+}
+
 [class$="__container"] {
   width: 95%;
   max-width: 120rem;

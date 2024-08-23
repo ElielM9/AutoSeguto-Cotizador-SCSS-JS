@@ -105,53 +105,68 @@
       <h2 class="quotation__heading">Cotiza tu seguro ahora</h2>
 
       <form class="quotation-form" action="#" id="quote-insurance">
-        <div class="quotation-form__field">
-          <label for="brand" class="quotation-form__label">Tipo de marca</label>
-          <select class="quotation-form__select" id="brand">
-            <option value="">Seleccionar</option>
-            <option value="1">Americano</option>
-            <option value="2">Asiatico</option>
-            <option value="3">Europeo</option>
-          </select>
-        </div>
-        <div class="quotation-form__field">
-          <label for="year" class="quotation-form__label">Año</label>
-          <select class="quotation-form__select" id="year">
-            <option value="">Seleccionar</option>
-          </select>
-        </div>
-        <fieldset class="quotation-form__field">
-          <label class="quotation-form__label"
-            >Selecciona el tipo de seguro</label
-          >
-          <div class="">
-            <div>
-              <label for="">Seguro básico</label>
-              <input type="radio" name="type" value="basic-insurance" checked />
-            </div>
-            <div>
-              <label for="">Seguro completo</label>
-              <input type="radio" name="type" value="accident-insurance" />
-            </div>
+        <fieldset class="quotation-form__fieldset">
+          <div class="quotation-form__field">
+            <label for="brand" class="quotation-form__label"
+              >Tipo de marca</label
+            >
+            <select class="quotation-form__select" id="brand">
+              <option value="">Seleccionar</option>
+              <option value="1">Americano</option>
+              <option value="2">Asiatico</option>
+              <option value="3">Europeo</option>
+            </select>
+          </div>
+          <div class="quotation-form__field">
+            <label for="year" class="quotation-form__label">Año</label>
+            <select class="quotation-form__select" id="year">
+              <option value="">Seleccionar</option>
+            </select>
           </div>
         </fieldset>
-        <div class="quotation-form__field">
-          <button type="submit" class="quotation-form__btn">
-            Cotizar seguro
-          </button>
-        </div>
-        <div class="quotation-form__results" id="results">
-          <div id="cargando" class="hidden">
-            <div class="spinner">
-              <div class="rect1"></div>
-              <div class="rect2"></div>
-              <div class="rect3"></div>
-              <div class="rect4"></div>
-              <div class="rect5"></div>
-            </div>
+        <fieldset class="quotation-form__fieldset">
+          <div class="quotation-form__field quotation-form__field--radio">
+            <label for="basic" class="quotation-form__label"
+              >Seguro básico</label
+            >
+            <input
+              class="quotation-form__input"
+              type="radio"
+              name="type"
+              value="basic"
+              id="basic"
+              checked
+            />
+          </div>
+          <div class="quotation-form__field quotation-form__field--radio">
+            <label for="complete" class="quotation-form__label"
+              >Seguro completo</label
+            >
+            <input
+              class="quotation-form__input"
+              type="radio"
+              name="type"
+              value="complete"
+              id="complete"
+            />
+          </div>
+        </fieldset>
+        <button type="submit" class="quotation-form__btn">
+          Cotizar seguro
+        </button>
+      </form>
+
+      <div class="quotation-form__results" id="results">
+        <div id="cargando" class="">
+          <div class="spinner">
+            <div class="rect1"></div>
+            <div class="rect2"></div>
+            <div class="rect3"></div>
+            <div class="rect4"></div>
+            <div class="rect5"></div>
           </div>
         </div>
-      </form>
+      </div>
     </section>
     <footer class="footer">
       <p class="footer__copy">
