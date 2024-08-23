@@ -54,14 +54,14 @@
   text-align: center;
   text-decoration: none;
   border: none;
-  border-radius: .5rem;
+  border-radius: 0.5rem;
 
   @include tablet {
     width: auto;
   }
 
   @include hover(background-color, 0.3s, ease-in-out) {
-    background-color: lighten($bgColor, 10%);
+    background-color: darken($bgColor, 10%);
     cursor: pointer;
   }
 }

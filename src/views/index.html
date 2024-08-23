@@ -107,9 +107,9 @@
       <form class="quotation-form" action="#" id="quote-insurance">
         <fieldset class="quotation-form__fieldset">
           <div class="quotation-form__field">
-            <label for="brand" class="quotation-form__label"
-              >Tipo de marca</label
-            >
+            <label for="brand" class="quotation-form__label">
+              Tipo de marca
+            </label>
             <select class="quotation-form__select" id="brand">
               <option value="">Seleccionar</option>
               <option value="1">Americano</option>
@@ -126,9 +126,9 @@
         </fieldset>
         <fieldset class="quotation-form__fieldset">
           <div class="quotation-form__field quotation-form__field--radio">
-            <label for="basic" class="quotation-form__label"
-              >Seguro básico</label
-            >
+            <label for="basic" class="quotation-form__label">
+              Seguro básico
+            </label>
             <input
               class="quotation-form__input"
               type="radio"
@@ -139,9 +139,9 @@
             />
           </div>
           <div class="quotation-form__field quotation-form__field--radio">
-            <label for="complete" class="quotation-form__label"
-              >Seguro completo</label
-            >
+            <label for="complete" class="quotation-form__label">
+              Seguro completo
+            </label>
             <input
               class="quotation-form__input"
               type="radio"
@@ -156,17 +156,9 @@
         </button>
       </form>
 
-      <div class="quotation-form__results" id="results">
-        <div id="cargando" class="">
-          <div class="spinner">
-            <div class="rect1"></div>
-            <div class="rect2"></div>
-            <div class="rect3"></div>
-            <div class="rect4"></div>
-            <div class="rect5"></div>
-          </div>
-        </div>
-      </div>
+      <span class="loader"></span>
+
+      <div class="quotation__results" id="quotation-results"></div>
     </section>
     <footer class="footer">
       <p class="footer__copy">
