@@ -72,23 +72,34 @@ UI.prototype.fillOptions = () => {
 
 /* Mostrar alertas */
 UI.prototype.showMessages = (message, type) => {
-  const div = document.createElement(`div`);
+  // Quitar los anteriores para evitar duplicados
+  const existingMessage = document.querySelector(`.alert--${type}`);
 
-  if (type === `error`) {
-    div.classList.add(`alert`, `alert--error`);
-  } else {
-    div.classList.add(`alert`, `alert--success`);
+  // Si ya existe un mensaje del mismo tipo, no agregar uno nuevo
+  if (existingMessage) {
+    existingMessage.textContent = message;
+
+    return;
   }
 
-  div.classList.add(`message`);
-  div.textContent = message;
+  // Crear un nuevo div para el mensaje
+  const alertMessage = document.createElement(`div`);
+
+  if (type === `error`) {
+    alertMessage.classList.add(`alert`, `alert--error`);
+  } else {
+    alertMessage.classList.add(`alert`, `alert--success`);
+  }
+
+  alertMessage.classList.add(`message`);
+  alertMessage.textContent = message;
 
   // Añadir el div a la sección de resultados
   const results = document.querySelector(`#quotation-results`);
-  results.appendChild(div);
+  results.appendChild(alertMessage);
 
   setTimeout(() => {
-    div.remove();
+    alertMessage.remove();
   }, 3000);
 };
 
@@ -107,7 +118,7 @@ UI.prototype.showResults = (insurance, total) => {
       break;
   }
 
-  switch (type){
+  switch (type) {
     case "basic":
       typeText = "Básico";
       break;
