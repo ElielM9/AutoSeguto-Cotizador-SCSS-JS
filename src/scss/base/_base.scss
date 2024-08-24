@@ -29,6 +29,11 @@ picture {
   display: flex;
 }
 
+ul{
+  list-style : none;
+  padding: 0;
+}
+
 [class$="__container"] {
   width: 95%;
   max-width: 120rem;
