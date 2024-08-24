@@ -147,9 +147,15 @@ UI.prototype.showResults = (insurance, total) => {
   const loader = document.querySelector(`#loader`);
   loader.classList.add(`loader--active`);
 
-  // Esperar 3 segundos para mostrar el loader y después quitarlo
+  
   setTimeout(() => {
+    // Esperar 3 segundos para mostrar el loader y después quitarlo
     loader.classList.remove(`loader--active`);
+
+    // Eliminar todos los resultados previos
+    while (results.firstChild) {
+      results.removeChild(results.firstChild);
+    }
 
     // Mostrar los resultados despúes del loader
     results.appendChild(divResult);
