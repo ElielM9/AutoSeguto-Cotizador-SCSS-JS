@@ -96,8 +96,8 @@ UserInterface.prototype.showMessages = (message, type) => {
   alertMessage.textContent = message;
 
   // Añadir el div a la sección de resultados
-  const results = document.querySelector(`#quotation-results`);
-  results.appendChild(alertMessage);
+  const resultsContainer = document.querySelector(`#quotation-results`);
+  resultsContainer.appendChild(alertMessage);
 
   setTimeout(() => {
     alertMessage.remove();
@@ -141,9 +141,6 @@ UserInterface.prototype.showResults = (insurance, total) => {
     </ul>
   `;
 
-  // Añadir el div a la sección de resultados
-  const results = document.querySelector(`#quotation-results`);
-
   // Mostrar el loader
   const loader = document.querySelector(`#loader`);
   loader.classList.add(`loader--active`);
@@ -152,13 +149,12 @@ UserInterface.prototype.showResults = (insurance, total) => {
     // Esperar 3 segundos para mostrar el loader y después quitarlo
     loader.classList.remove(`loader--active`);
 
-    // Eliminar todos los resultados previos
-    while (results.firstChild) {
-      results.removeChild(results.firstChild);
-    }
+    // Limpiar resultados previos para evitar duplicados
+    cleanHtml();
 
-    // Mostrar los resultados despúes del loader
-    results.appendChild(divResult);
+    // Añadir los resultados al HTML
+    const resultsContainer = document.querySelector(`#quotation-results`);
+    resultsContainer.appendChild(divResult);
   }, 3000);
 };
 
@@ -188,6 +184,9 @@ function handleFormEvents() {
 function quoteInsurance(e) {
   e.preventDefault();
 
+  // Limpiar resultados previos para evitar duplicados
+  cleanHtml();
+
   // Obtener los valores seleccionados del formulario (Marca, año y tipo)
   const selectedBrand = document.querySelector(`#brand`).value;
   const selectedYear = document.querySelector(`#year`).value;
@@ -195,7 +194,14 @@ function quoteInsurance(e) {
     `input[name="type"]:checked`
   ).value;
 
-  if (selectedBrand === `` || selectedYear === `` || selectedType === ``) {
+  // Validar que todos los campos estén seleccionados
+  const voidValue = ``;
+  if (
+    selectedBrand === voidValue ||
+    selectedYear === voidValue ||
+    selectedType === voidValue
+  ) {
+    // Mostrar mensaje de error al no seleccionar algún campo
     userInterface.showMessages(`Por favor, complete todos los campos`, `error`);
 
     return;
@@ -203,12 +209,6 @@ function quoteInsurance(e) {
 
   // Mostrar mensaje de cargando (loader) e indicar que se está calculando la cotización
   userInterface.showMessages(`Cargando...`, `success`);
-
-  // Eliminar las cotizaciones previas
-  const results = document.querySelector(`#quotation-results .result`);
-  if (results != null) {
-    results.remove();
-  }
 
   // Instanciar el seguro del auto
   const carInsurance = new Insurance(selectedBrand, selectedYear, selectedType);
@@ -218,4 +218,15 @@ function quoteInsurance(e) {
 
   // Mostrar los resultados
   userInterface.showResults(carInsurance, total);
+}
+
+function cleanHtml() {
+  // Limpiar los resultados previos (si existen)
+  const existingResults = document.querySelectorAll(`.result`);
+  console.log(existingResults);
+
+  // Quitar cada uno de los resultados del HTML para evitar duplicados
+  existingResults.forEach((result) => {
+    result.remove();
+  });
 }
