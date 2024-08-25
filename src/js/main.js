@@ -1,4 +1,5 @@
 /* Funciones constructoras */
+
 function Insurance(brand, year, type) {
   this.brand = brand;
   this.year = year;
@@ -51,10 +52,10 @@ Insurance.prototype.calculateCost = function () {
   return count;
 };
 
-function UI() {}
+function UserInterface() {}
 
 /* Llenar los años */
-UI.prototype.fillOptions = () => {
+UserInterface.prototype.fillOptions = () => {
   const selectYear = document.querySelector(`#year`);
   const max = new Date().getFullYear(),
     min = max - 20;
@@ -71,7 +72,7 @@ UI.prototype.fillOptions = () => {
 };
 
 /* Mostrar alertas */
-UI.prototype.showMessages = (message, type) => {
+UserInterface.prototype.showMessages = (message, type) => {
   // Quitar los anteriores para evitar duplicados
   const existingMessage = document.querySelector(`.alert--${type}`);
 
@@ -104,7 +105,7 @@ UI.prototype.showMessages = (message, type) => {
 };
 
 /* Mostrar los resultados */
-UI.prototype.showResults = (insurance, total) => {
+UserInterface.prototype.showResults = (insurance, total) => {
   const { brand, year, type } = insurance;
   switch (brand) {
     case "1":
@@ -147,7 +148,6 @@ UI.prototype.showResults = (insurance, total) => {
   const loader = document.querySelector(`#loader`);
   loader.classList.add(`loader--active`);
 
-  
   setTimeout(() => {
     // Esperar 3 segundos para mostrar el loader y después quitarlo
     loader.classList.remove(`loader--active`);
@@ -163,39 +163,46 @@ UI.prototype.showResults = (insurance, total) => {
 };
 
 // Instanciar el objeto UI
-const ui = new UI();
+const userInterface = new UserInterface();
 
-document.addEventListener(`DOMContentLoaded`, () => {
-  // Llenar los años en el select
-  ui.fillOptions();
-});
+/* Cargar el documento para iniciar la app */
+document.addEventListener(`DOMContentLoaded`, startApp);
 
-events();
-function events() {
+/* Funciones */
+
+function startApp() {
+  // Llenar los años
+  userInterface.fillOptions();
+
+  // Asignar eventos al formulario
+  handleFormEvents();
+}
+
+function handleFormEvents() {
   const form = document.querySelector(`#quote-form`);
 
+  // Al enviar el formulario de cotización de seguro de auto: llamar la función quoteInsurance()
   form.addEventListener(`submit`, quoteInsurance);
 }
 
 function quoteInsurance(e) {
   e.preventDefault();
 
-  // Leer la marca seleccionada
-  const brand = document.querySelector(`#brand`).value;
+  // Obtener los valores seleccionados del formulario (Marca, año y tipo)
+  const selectedBrand = document.querySelector(`#brand`).value;
+  const selectedYear = document.querySelector(`#year`).value;
+  const selectedType = document.querySelector(
+    `input[name="type"]:checked`
+  ).value;
 
-  // Leer el año seleccionado
-  const year = document.querySelector(`#year`).value;
-
-  // Leer el tipo seleccionado
-  const type = document.querySelector(`input[name="type"]:checked`).value;
-
-  if (brand === `` || year === `` || type === ``) {
-    ui.showMessages(`Por favor, complete todos los campos`, `error`);
+  if (selectedBrand === `` || selectedYear === `` || selectedType === ``) {
+    userInterface.showMessages(`Por favor, complete todos los campos`, `error`);
 
     return;
   }
 
-  ui.showMessages(`Cargando...`, `success`);
+  // Mostrar mensaje de cargando (loader) e indicar que se está calculando la cotización
+  userInterface.showMessages(`Cargando...`, `success`);
 
   // Eliminar las cotizaciones previas
   const results = document.querySelector(`#quotation-results .result`);
@@ -203,12 +210,12 @@ function quoteInsurance(e) {
     results.remove();
   }
 
-  // Instanciar el seguro
-  const insurance = new Insurance(brand, year, type);
+  // Instanciar el seguro del auto
+  const carInsurance = new Insurance(selectedBrand, selectedYear, selectedType);
 
   // Llamar la función para calcular el costo
-  const total = insurance.calculateCost();
+  const total = carInsurance.calculateCost();
 
   // Mostrar los resultados
-  ui.showResults(insurance, total);
+  userInterface.showResults(carInsurance, total);
 }
