@@ -109,13 +109,13 @@ UserInterface.prototype.showResults = (insurance, total) => {
   const { brand, year, type } = insurance;
   switch (brand) {
     case "1":
-      brandText = "Americano";
+      brandText = "Americana";
       break;
     case "2":
-      brandText = "Asiático";
+      brandText = "Asiática";
       break;
     case "3":
-      brandText = "Europeo";
+      brandText = "Europea";
       break;
   }
 
@@ -146,7 +146,6 @@ UserInterface.prototype.showResults = (insurance, total) => {
   loader.classList.add(`loader--active`);
 
   setTimeout(() => {
-    const result = document.querySelector(`.result`);
     // Esperar 3 segundos para mostrar el loader y después quitarlo
     loader.classList.remove(`loader--active`);
 
@@ -156,8 +155,6 @@ UserInterface.prototype.showResults = (insurance, total) => {
     // Añadir los resultados al HTML
     const resultsContainer = document.querySelector(`#quotation-results`);
     resultsContainer.appendChild(divResult);
-
-    console.log(result);
   }, 3000);
 };
 
@@ -216,11 +213,11 @@ function quoteInsurance(e) {
   // Instanciar el seguro del auto
   const carInsurance = new Insurance(selectedBrand, selectedYear, selectedType);
 
-  // Llamar la función para calcular el costo
-  const total = carInsurance.calculateCost();
+  // Llamar la función para calcular el costo total
+  const totalCost = carInsurance.calculateCost();
 
   // Mostrar los resultados
-  userInterface.showResults(carInsurance, total);
+  userInterface.showResults(carInsurance, totalCost);
 }
 
 function cleanHtml() {
