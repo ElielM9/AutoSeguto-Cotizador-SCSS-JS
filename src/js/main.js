@@ -146,6 +146,7 @@ UserInterface.prototype.showResults = (insurance, total) => {
   loader.classList.add(`loader--active`);
 
   setTimeout(() => {
+    const result = document.querySelector(`.result`);
     // Esperar 3 segundos para mostrar el loader y después quitarlo
     loader.classList.remove(`loader--active`);
 
@@ -155,6 +156,8 @@ UserInterface.prototype.showResults = (insurance, total) => {
     // Añadir los resultados al HTML
     const resultsContainer = document.querySelector(`#quotation-results`);
     resultsContainer.appendChild(divResult);
+
+    console.log(result);
   }, 3000);
 };
 
@@ -223,9 +226,7 @@ function quoteInsurance(e) {
 function cleanHtml() {
   // Limpiar los resultados previos (si existen)
   const existingResults = document.querySelectorAll(`.result`);
-  console.log(existingResults);
 
-  // Quitar cada uno de los resultados del HTML para evitar duplicados
   existingResults.forEach((result) => {
     result.remove();
   });
