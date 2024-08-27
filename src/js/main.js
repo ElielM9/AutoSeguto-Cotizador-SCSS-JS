@@ -43,9 +43,9 @@ Insurance.prototype.calculateCost = function () {
    * Si el tipo seleccionado es completo, se multiplica un 50% más
    */
 
-  if (this.type === `basico`) {
-    count *= 1.3;
-  } else if (this.type === `completo`) {
+  if (this.type === `basic`) {
+    count *= 1.3; // Count = count * 1.3 
+  } else if (this.type === `complete`) {
     count *= 1.5;
   }
 
@@ -224,7 +224,5 @@ function cleanHtml() {
   // Limpiar los resultados previos (si existen)
   const existingResults = document.querySelectorAll(`.result`);
 
-  existingResults.forEach((result) => {
-    result.remove();
-  });
+  existingResults.forEach((result) => result.remove());
 }
